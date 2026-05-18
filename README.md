@@ -2,6 +2,8 @@
 
 # HMIP HCU Plugin: Open-Meteo Weather
 
+📦 **[Download hmip-plugin-weather-1.0.0.tar.gz](https://github.com/fabiorenner-hub/hmip-hcu-webweather/releases/latest/download/hmip-plugin-weather-1.0.0.tar.gz)** — install via HCUweb → *Developer mode → Plugins → Install from file*.
+
 A Homematic IP HCU plugin that pulls weather data from
 [Open-Meteo](https://open-meteo.com/) and exposes it as `CLIMATE_SENSOR`
 devices in the Homematic IP app.
