@@ -1,0 +1,35 @@
+{
+  "name": "hmip-plugin-weather",
+  "version": "1.0.0",
+  "description": "Homematic IP HCU plugin that exposes Open-Meteo weather data as CLIMATE_SENSOR devices in the HMIP app (current, today, tomorrow, with daily highs and lows).",
+  "author": "Fabio Renner",
+  "license": "Apache-2.0",
+  "homepage": "https://github.com/fabiorenner-hub/hmip-hcu-webweather#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fabiorenner-hub/hmip-hcu-webweather.git"
+  },
+  "bugs": {
+    "url": "https://github.com/fabiorenner-hub/hmip-hcu-webweather/issues"
+  },
+  "keywords": [
+    "homematic",
+    "hmip",
+    "hcu",
+    "weather",
+    "open-meteo",
+    "smart-home",
+    "climate-sensor"
+  ],
+  "main": "plugin.js",
+  "scripts": {
+    "start": "node plugin.js"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "uuid": "^11.1.0",
+    "ws": "^8.18.3"
+  }
+}
