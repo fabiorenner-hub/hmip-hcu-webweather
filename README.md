@@ -1,4 +1,4 @@
-> ðŸ‡¬ðŸ‡§ English | [ðŸ‡©ðŸ‡ª Deutsch](README.de.md)
+> 🇬🇧 English | [🇩🇪 Deutsch](README.de.md)
 
 <p align="center">
   <img src="icon.svg" alt="hmip-plugin-weather icon" width="128" height="128"/>
@@ -6,7 +6,7 @@
 
 # HMIP HCU Plugin: Open-Meteo Weather
 
-ðŸ“¦ **[Download hmip-plugin-weather-1.1.1.tar.gz](https://github.com/fabiorenner-hub/hmip-hcu-webweather/releases/latest/download/hmip-plugin-weather-1.1.1.tar.gz)** â€” install via HCUweb â†’ *Developer mode â†’ Plugins â†’ Install from file*.
+📦 **[Download hmip-plugin-weather-1.1.2.tar.gz](https://github.com/fabiorenner-hub/hmip-hcu-webweather/releases/latest/download/hmip-plugin-weather-1.1.2.tar.gz)** — install via HCUweb → *Developer mode → Plugins → Install from file*.
 
 GitHub: <https://github.com/fabiorenner-hub/hmip-hcu-webweather>
 
@@ -24,37 +24,38 @@ me keep the lights on while building more HCU plugins:
 
 Up to five virtual `CLIMATE_SENSOR` devices, separated by time period:
 
-| Device                        | Shows                                              |
-| ----------------------------- | -------------------------------------------------- |
-| Weather <Location>            | Current readings                                   |
-| Weather <Location> (today)    | Daily high temperature + aggregated daily values   |
-| Weather <Location> (today, low) | Today's low temperature                          |
-| Weather <Location> (tomorrow) | Tomorrow's high + forecast daily values            |
-| Weather <Location> (tomorrow, low) | Tomorrow's low temperature                    |
+| Device                              | Shows                                            |
+| ----------------------------------- | ------------------------------------------------ |
+| Weather <Location>                  | Current readings                                 |
+| Weather <Location> (today)          | Daily high temperature + aggregated daily values |
+| Weather <Location> (today, low)     | Today's low temperature                          |
+| Weather <Location> (tomorrow)       | Tomorrow's high + forecast daily values          |
+| Weather <Location> (tomorrow, low)  | Tomorrow's low temperature                       |
 
-The "today", "tomorrow" and "low" devices can be enabled or disabled individually
-in the configuration.
+The "today", "tomorrow" and "low" devices can be enabled or disabled
+individually in the configuration.
 
 ## Install on your HCU
 
 1. Download `hmip-plugin-weather-<version>.tar.gz` from the
    [Releases](https://github.com/fabiorenner-hub/hmip-hcu-webweather/releases).
-2. In HCUweb open *Developer mode â†’ Plugins â†’ Upload* and select the file.
-3. Configure under *Plugins â†’ Open-Meteo Weather â†’ Configure*.
+2. In HCUweb open *Developer mode → Plugins → Upload* and select the file.
+3. Configure under *Plugins → Open-Meteo Weather → Configure*.
 
-## Build and install on the HCU
+## Build it yourself
+
+```powershell
+./build.ps1   # Windows
+```
 
 ```bash
-./build.sh    # Linux/macOS
-# or
-./build.ps1   # Windows
+chmod +x build.sh
+./build.sh    # macOS / Linux
 ```
 
 ## Notes
 
 - Open-Meteo is free for non-commercial use and does not need an API key.
-- The lux estimate from solar radiation is approximate, and accuracy depends
-  on the Open-Meteo model.
 - `CLIMATE_SENSOR` is a sensor-only archetype. `CONTROL_REQUEST` is answered
   with `success: false`.
 
