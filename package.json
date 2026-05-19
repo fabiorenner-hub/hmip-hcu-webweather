@@ -1,6 +1,6 @@
 {
   "name": "hmip-plugin-weather",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Homematic IP HCU plugin that exposes Open-Meteo weather data as CLIMATE_SENSOR devices in the HMIP app (current, today, tomorrow, with daily highs and lows).",
   "author": "Fabio Renner",
   "license": "Apache-2.0",

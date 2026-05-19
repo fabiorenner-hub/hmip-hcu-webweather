@@ -1,6 +1,6 @@
 $ErrorActionPreference = "Stop"
 
-$version    = "1.0.0"
+$version    = "1.1.0"
 $imageTag   = "hmip-plugin-weather:$version"
 $outputFile = "hmip-plugin-weather-$version.tar.gz"
 

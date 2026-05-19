@@ -1,45 +1,40 @@
 > 🇬🇧 English | [🇩🇪 Deutsch](README.de.md)
 
+<p align="center">
+  <img src="icon.svg" alt="hmip-plugin-weather icon" width="128" height="128"/>
+</p>
+
 # HMIP HCU Plugin: Open-Meteo Weather
 
-📦 **[Download hmip-plugin-weather-1.0.0.tar.gz](https://github.com/fabiorenner-hub/hmip-hcu-webweather/releases/latest/download/hmip-plugin-weather-1.0.0.tar.gz)** — install via HCUweb → *Developer mode → Plugins → Install from file*.
+📦 **[Download hmip-plugin-weather-1.1.0.tar.gz](https://github.com/fabiorenner-hub/hmip-hcu-webweather/releases/latest/download/hmip-plugin-weather-1.1.0.tar.gz)** — install via HCUweb → *Developer mode → Plugins → Install from file*.
+
+GitHub: <https://github.com/fabiorenner-hub/hmip-hcu-webweather>
 
 A Homematic IP HCU plugin that pulls weather data from
 [Open-Meteo](https://open-meteo.com/) and exposes it as `CLIMATE_SENSOR`
 devices in the Homematic IP app.
 
+## Support this plugin
+
+If this plugin is useful to you, please consider a small donation — it helps
+me keep the lights on while building more HCU plugins.
+
+<form action="https://www.paypal.com/donate" method="post" target="_top"><input type="hidden" name="hosted_button_id" value="JPZRATUUHRT5C" /><input type="image" src="https://www.paypalobjects.com/de_DE/DE/i/btn/btn_donate_SM.gif" border="0" name="submit" title="PayPal - The safer, easier way to pay online!" alt="Spenden mit dem PayPal-Button" /><img alt="" border="0" src="https://www.paypal.com/de_DE/i/scr/pixel.gif" width="1" height="1" /></form>
+
 ## Devices in the HMIP app
 
 Up to five virtual `CLIMATE_SENSOR` devices, separated by time period:
 
-| Device                          | Shows                                              |
-| ------------------------------- | -------------------------------------------------- |
-| Weather <Location>              | Current readings                                   |
-| Weather <Location> (today)      | Daily high temperature + aggregated daily values   |
-| Weather <Location> (today, low) | Today's low temperature                            |
-| Weather <Location> (tomorrow)   | Tomorrow's high + forecast daily values            |
-| Weather <Location> (tomorrow, low) | Tomorrow's low temperature                      |
+| Device                        | Shows                                              |
+| ----------------------------- | -------------------------------------------------- |
+| Weather <Location>            | Current readings                                   |
+| Weather <Location> (today)    | Daily high temperature + aggregated daily values   |
+| Weather <Location> (today, low) | Today's low temperature                          |
+| Weather <Location> (tomorrow) | Tomorrow's high + forecast daily values            |
+| Weather <Location> (tomorrow, low) | Tomorrow's low temperature                    |
 
-The "today", "tomorrow" and "low" devices can be enabled or disabled
-individually in the configuration.
-
-> **A note on temperature:** the Connect API supports only one temperature
-> field per device. To show both highs and lows, the lows are exposed as
-> separate "low" devices.
-
-## Supported features per device
-
-| HMIP feature        | now   | today / tomorrow | low |
-| ------------------- | :---: | :--------------: | :-: |
-| `actualTemperature` | current | daily max      | daily min |
-| `humidity`          | current | daily mean     | – |
-| `windSpeed`         | current | max            | – |
-| `windDirection`     | current | dominant       | – |
-| `illumination`      | current | estimated peak | – |
-| `raining`           | yes   | yes              | – |
-| `storm`             | yes   | yes              | – |
-| `sunshine`          | yes   | yes              | – |
-| `rainCount`         | today/yesterday | expected accumulation | – |
+The "today", "tomorrow" and "low" devices can be enabled or disabled individually
+in the configuration.
 
 ## Install on your HCU
 
@@ -48,86 +43,13 @@ individually in the configuration.
 2. In HCUweb open *Developer mode → Plugins → Upload* and select the file.
 3. Configure under *Plugins → Open-Meteo Weather → Configure*.
 
-## Configuration via the HCU UI
-
-**Location group**
-- **Latitude** (decimal degrees)
-- **Longitude** (decimal degrees)
-- **Location name** — used as part of the device name in the app
-
-**Devices group**
-- **Today device** — create the device with today's daily values
-- **Tomorrow device** — create the forecast device for tomorrow
-- **Show low temperature** — additional "low" devices for today and tomorrow
-
-**Behavior group**
-- **Polling interval (ms)** — between 60 000 and 3 600 000 ms
-- **Storm threshold (km/h)** — `storm` flag is set above this gust speed
-
-Saved values are stored in `/data/config.json` and persist across restarts
-and plugin updates.
-
-## Update interval
-
-Open-Meteo updates the data hourly depending on the model. Default is every
-10 minutes. On startup, after each config change, and on every interval tick
-the plugin queries Open-Meteo and pushes a `STATUS_EVENT` for all enabled
-devices.
-
-## Prerequisites
-
-- HCU with developer mode enabled (firmware ≥ 1.4.7)
-- Docker (only if you want to build the image yourself)
-- HCU has internet access (for Open-Meteo)
-
-## Test locally without a container
-
-```bash
-cd hmip-plugin-weather
-npm install
-# Save the HCU auth token to authtoken.txt, then:
-node plugin.js de.example.plugin.weather hcu1-XXXX.local authtoken.txt
-```
-
-When testing locally the config lives in `/data/config.json`. On non-Linux
-hosts, redirect with `WEATHER_DATA_DIR`:
-
-```bash
-WEATHER_DATA_DIR=./data node plugin.js ...
-```
-
-## First-start location defaults
-
-The very first start (before anyone has opened the GUI) uses these env
-defaults:
-
-| Variable                    | Meaning                          | Default        |
-| --------------------------- | -------------------------------- | -------------- |
-| `WEATHER_LAT`               | latitude                         | `52.5200`      |
-| `WEATHER_LON`               | longitude                        | `13.4050`      |
-| `WEATHER_LOCATION_NAME`     | display name                     | `Open-Meteo`   |
-| `WEATHER_POLL_MS`           | polling interval                 | `600000`       |
-| `WEATHER_STORM_KMH`         | storm threshold (gusts)          | `62`           |
-| `WEATHER_TODAY_ENABLED`     | "today" device                   | `true`         |
-| `WEATHER_FORECAST_ENABLED`  | "tomorrow" device                | `true`         |
-| `WEATHER_SHOW_MIN`          | "low" devices                    | `true`         |
-
-Once the GUI saved a configuration, the persisted config wins over the env
-defaults.
-
 ## Build and install on the HCU
 
 ```bash
-# 1. Build the image (ARM64!)
-docker buildx build --platform linux/arm64 --load -t de/example/plugin/weather:1.0.0 .
-
-# 2. Export as .tar.gz
-docker save de/example/plugin/weather:1.0.0 | gzip > hmip-plugin-weather-1.0.0.tar.gz
-
-# 3. Open HCUweb -> Plugins -> Upload -> select the archive
+./build.sh    # Linux/macOS
+# or
+./build.ps1   # Windows
 ```
-
-Or use the supplied `build.sh` / `build.ps1`.
 
 ## Notes
 
@@ -141,6 +63,10 @@ Or use the supplied `build.sh` / `build.ps1`.
 
 - [Homematic IP Connect API](https://github.com/homematicip/connect-api)
 - [Open-Meteo API docs](https://open-meteo.com/en/docs)
+
+## Author
+
+Issued by **Fabio Renner**.
 
 ## License
 
