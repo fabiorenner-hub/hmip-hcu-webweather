@@ -59,6 +59,11 @@ chmod +x build.sh
 
 Herausgegeben von **Fabio Renner**.
 
+### Verwendete Drittanbieter
+
+- Wetterdaten von [Open-Meteo](https://open-meteo.com/) (kostenlos für nicht-kommerzielle Nutzung; Quellenangabe erbeten).
+- Gebaut gegen die [Homematic IP Connect API 1.0.1](https://github.com/homematicip/connect-api) von eQ-3.
+
 ## Lizenz
 
 Apache-2.0

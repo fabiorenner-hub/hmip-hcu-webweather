@@ -68,6 +68,11 @@ chmod +x build.sh
 
 Issued by **Fabio Renner**.
 
+### Third-party components
+
+- Weather data from [Open-Meteo](https://open-meteo.com/) (free for non-commercial use; attribution requested).
+- Built against the [Homematic IP Connect API 1.0.1](https://github.com/homematicip/connect-api) by eQ-3.
+
 ## License
 
 Apache-2.0
